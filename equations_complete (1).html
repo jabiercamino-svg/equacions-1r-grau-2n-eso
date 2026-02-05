@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banc d'Equacions de 1r Grau - 2n ESO</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .rules-box {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 35px;
+            border: 3px solid #fdcb6e;
+            box-shadow: 0 5px 15px rgba(253, 203, 110, 0.3);
+        }
+        
+        .rules-box h3 {
+            color: #d63031;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            text-align: center;
+        }
+        
+        .rules-box p {
+            color: #2d3436;
+            font-size: 1.05em;
+            line-height: 2;
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+        
+        .rules-box strong {
+            color: #d63031;
+            font-size: 1.1em;
+        }
+        
+        h2 {
+            color: #764ba2;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+            font-size: 1.8em;
+        }
+        
+        .section-intro {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .exercise-title {
+            background: #667eea;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px 10px 0 0;
+            font-weight: bold;
+            font-size: 1.2em;
+            margin-top: 30px;
+        }
+        
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            background: #f5f7fa;
+            padding: 20px;
+            border-radius: 0 0 10px 10px;
+            margin-bottom: 20px;
+        }
+        
+        .equation-item {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            transition: transform 0.2s;
+        }
+        
+        .equation-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 3px 10px rgba(102, 126, 234, 0.2);
+        }
+        
+        .equation-label {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.85em;
+        }
+        
+        .equation {
+            font-size: 1.2em;
+            margin-top: 8px;
+            color: #333;
+        }
+        
+        .problem-box {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border-left: 5px solid #ff6b6b;
+            transition: transform 0.2s;
+        }
+        
+        .problem-box:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+        
+        .problem-number {
+            display: inline-block;
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+        
+        .problem-text {
+            font-size: 1.1em;
+            color: #333;
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+        
+        .solutions {
+            background: #e8f5e9;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 40px;
+            border: 3px dashed #4caf50;
+        }
+        
+        .solutions h2 {
+            color: #2e7d32;
+            border-bottom: 3px solid #4caf50;
+        }
+        
+        .solution-group {
+            margin: 20px 0;
+        }
+        
+        .solution-group h4 {
+            color: #2e7d32;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        
+        .solution-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .solution-item {
+            padding: 8px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid #4caf50;
+            font-size: 0.9em;
+        }
+        
+        .solution-number {
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        
+        @media print {
+            body {
+                background: white;
+            }
+            .container {
+                box-shadow: none;
+            }
+            .equation-item:hover, .problem-box:hover {
+                transform: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .exercise-grid {
+                grid-template-columns: 1fr;
+            }
+            .solution-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📐 Banc d'Equacions de 1r Grau</h1>
+        <p class="subtitle">Matemàtiques 2n ESO</p>
+        
+        <!-- RECORDATORIO DE REGLAS -->
+        <div class="rules-box">
+            <h3>⚡ Regles per resoldre una equació de 1r grau</h3>
+            <p>📌 Si hi ha fraccions, calculem el mcm.</p>
+            <p>📌 Si hi ha parèntesis, multipliquem dit parèntesi pel nombre que tingui davant.</p>
+            <p><strong>🎯 Objectiu principal: Nombres per un costat i lletres per l'altre.</strong></p>
+            <p>➕ El que resta passa sumant.</p>
+            <p>➖ El que suma passa restant.</p>
+            <p>✖️ El que multiplica passa dividint.</p>
+            <p>➗ El que divideix passa multiplicant.</p>
+        </div>
+        
+        <!-- SECCIÓN DE ECUACIONES -->
+        <h2>📝 Equacions</h2>
+        <div class="section-intro">
+            <strong>Instruccions:</strong> Resol les següents equacions. Recorda comprovar sempre la teva solució substituint el valor de <em>x</em> a l'equació original.
+        </div>
+        
+        <!-- EJERCICIO 1: x sola (suma) -->
+        <div class="exercise-title">Exercici 1</div>
+        <div class="exercise-grid">
+            <div class="equation-item">
+                <span class="equation-label">a)</span>
+                <div class="equation">\(x + 5 = 12\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">b)</span>
+                <div class="equation">\(x + 8 = 15\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">c)</span>
+                <div class="equation">\(x + 11 = 20\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">d)</span>
+                <div class="equation">\(x + 6 = 14\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">e)</span>
+                <div class="equation">\(x + 9 = 13\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">f)</span>
+                <div class="equation">\(x + 7 = 18\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">g)</span>
+                <div class="equation">\(x + 4 = 11\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">h)</span>
+                <div class="equation">\(x + 10 = 22\)</div>
+            </div>
+        </div>
+        
+        <!-- EJERCICIO 2: x sola (resta) -->
+        <div class="exercise-title">Exercici 2</div>
+        <div class="exercise-grid">
+            <div class="equation-item">
+                <span class="equation-label">a)</span>
+                <div class="equation">\(x - 3 = 7\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">b)</span>
+                <div class="equation">\(x - 5 = 9\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">c)</span>
+                <div class="equation">\(x - 8 = 4\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">d)</span>
+                <div class="equation">\(x - 6 = 11\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">e)</span>
+                <div class="equation">\(x - 4 = 8\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">f)</span>
+                <div class="equation">\(x - 7 = 5\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">g)</span>
+                <div class="equation">\(x - 9 = 3\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">h)</span>
+                <div class="equation">\(x - 2 = 10\)</div>
+            </div>
+        </div>
+        
+        <!-- EJERCICIO 3: x sola con negativos -->
+        <div class="exercise-title">Exercici 3</div>
+        <div class="exercise-grid">
+            <div class="equation-item">
+                <span class="equation-label">a)</span>
+                <div class="equation">\(x - 7 = -2\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">b)</span>
+                <div class="equation">\(x + 5 = 2\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">c)</span>
+                <div class="equation">\(x - 9 = -4\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">d)</span>
+                <div class="equation">\(x + 8 = 3\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">e)</span>
+                <div class="equation">\(x - 6 = -10\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">f)</span>
+                <div class="equation">\(x + 12 = 4\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">g)</span>
+                <div class="equation">\(x - 3 = -8\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">h)</span>
+                <div class="equation">\(x + 15 = 7\)</div>
+            </div>
+        </div>
+        
+        <!-- EJERCICIO 4: Multiplicación simple -->
+        <div class="exercise-title">Exercici 4</div>
+        <div class="exercise-grid">
+            <div class="equation-item">
+                <span class="equation-label">a)</span>
+                <div class="equation">\(2x = 10\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">b)</span>
+                <div class="equation">\(3x = 18\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">c)</span>
+                <div class="equation">\(5x = 25\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">d)</span>
+                <div class="equation">\(4x = 20\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">e)</span>
+                <div class="equation">\(6x = 30\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">f)</span>
+                <div class="equation">\(7x = 28\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">g)</span>
+                <div class="equation">\(8x = 32\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">h)</span>
+                <div class="equation">\(9x = 36\)</div>
+            </div>
+        </div>
+        
+        <!-- EJERCICIO 5: Multiplicación con negativos -->
+        <div class="exercise-title">Exercici 5</div>
+        <div class="exercise-grid">
+            <div class="equation-item">
+                <span class="equation-label">a)</span>
+                <div class="equation">\(-2x = 8\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">b)</span>
+                <div class="equation">\(-3x = 15\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">c)</span>
+                <div class="equation">\(-5x = 20\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">d)</span>
+                <div class="equation">\(-4x = 12\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">e)</span>
+                <div class="equation">\(-6x = 24\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">f)</span>
+                <div class="equation">\(-7x = 21\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">g)</span>
+                <div class="equation">\(-3x = 12\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">h)</span>
+                <div class="equation">\(-5x = 30\)</div>
+            </div>
+        </div>
+        
+        <!-- EJERCICIO 6: ax + b = c -->
+        <div class="exercise-title">Exercici 6</div>
+        <div class="exercise-grid">
+            <div class="equation-item">
+                <span class="equation-label">a)</span>
+                <div class="equation">\(2x + 3 = 11\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">b)</span>
+                <div class="equation">\(3x + 5 = 20\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">c)</span>
+                <div class="equation">\(4x + 2 = 18\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">d)</span>
+                <div class="equation">\(5x + 4 = 29\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">e)</span>
+                <div class="equation">\(6x + 1 = 25\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">f)</span>
+                <div class="equation">\(3x + 7 = 22\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">g)</span>
+                <div class="equation">\(4x + 6 = 26\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">h)</span>
+                <div class="equation">\(7x + 3 = 38\)</div>
+            </div>
+        </div>
+        
+        <!-- EJERCICIO 7: ax - b = c -->
+        <div class="exercise-title">Exercici 7</div>
+        <div class="exercise-grid">
+            <div class="equation-item">
+                <span class="equation-label">a)</span>
+                <div class="equation">\(3x - 4 = 11\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">b)</span>
+                <div class="equation">\(5x - 6 = 19\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">c)</span>
+                <div class="equation">\(4x - 3 = 17\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">d)</span>
+                <div class="equation">\(6x - 5 = 25\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">e)</span>
+                <div class="equation">\(2x - 7 = 9\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">f)</span>
+                <div class="equation">\(7x - 4 = 24\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">g)</span>
+                <div class="equation">\(8x - 9 = 23\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">h)</span>
+                <div class="equation">\(5x - 8 = 22\)</div>
+            </div>
+        </div>
+        
+        <!-- EJERCICIO 8: x a ambos lados (fácil) -->
+        <div class="exercise-title">Exercici 8</div>
+        <div class="exercise-grid">
+            <div class="equation-item">
+                <span class="equation-label">a)</span>
+                <div class="equation">\(5x + 2 = 3x + 10\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">b)</span>
+                <div class="equation">\(7x + 3 = 4x + 15\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">c)</span>
+                <div class="equation">\(6x + 5 = 2x + 17\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">d)</span>
+                <div class="equation">\(8x + 1 = 5x + 13\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">e)</span>
+                <div class="equation">\(9x + 4 = 6x + 16\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">f)</span>
+                <div class="equation">\(4x + 7 = x + 19\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">g)</span>
+                <div class="equation">\(10x + 2 = 7x + 14\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">h)</span>
+                <div class="equation">\(6x + 8 = 3x + 20\)</div>
+            </div>
+        </div>
+        
+        <!-- EJERCICIO 9: x a ambos lados (con negativos) -->
+        <div class="exercise-title">Exercici 9</div>
+        <div class="exercise-grid">
+            <div class="equation-item">
+                <span class="equation-label">a)</span>
+                <div class="equation">\(7x - 5 = 3x + 11\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">b)</span>
+                <div class="equation">\(8x - 6 = 5x + 9\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">c)</span>
+                <div class="equation">\(6x - 4 = 2x + 12\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">d)</span>
+                <div class="equation">\(9x - 7 = 4x + 13\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">e)</span>
+                <div class="equation">\(5x - 8 = 2x + 4\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">f)</span>
+                <div class="equation">\(10x - 9 = 6x + 7\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">g)</span>
+                <div class="equation">\(4x - 3 = x + 9\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">h)</span>
+                <div class="equation">\(11x - 10 = 7x + 6\)</div>
+            </div>
+        </div>
+        
+        <!-- EJERCICIO 10: x a ambos lados (más complejas) -->
+        <div class="exercise-title">Exercici 10</div>
+        <div class="exercise-grid">
+            <div class="equation-item">
+                <span class="equation-label">a)</span>
+                <div class="equation">\(5x + 7 = 3x - 3\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">b)</span>
+                <div class="equation">\(8x + 4 = 6x - 6\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">c)</span>
+                <div class="equation">\(7x + 9 = 4x - 6\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">d)</span>
+                <div class="equation">\(6x + 5 = 2x - 11\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">e)</span>
+                <div class="equation">\(9x + 8 = 5x - 4\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">f)</span>
+                <div class="equation">\(4x + 12 = x - 3\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">g)</span>
+                <div class="equation">\(10x + 6 = 7x - 9\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">h)</span>
+                <div class="equation">\(3x + 14 = x - 2\)</div>
+            </div>
+        </div>
+        
+        <!-- EJERCICIO 11: Con paréntesis simple -->
+        <div class="exercise-title">Exercici 11</div>
+        <div class="exercise-grid">
+            <div class="equation-item">
+                <span class="equation-label">a)</span>
+                <div class="equation">\(2(x + 3) = 14\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">b)</span>
+                <div class="equation">\(3(x + 4) = 21\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">c)</span>
+                <div class="equation">\(5(x - 2) = 15\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">d)</span>
+                <div class="equation">\(4(x + 5) = 32\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">e)</span>
+                <div class="equation">\(6(x - 1) = 24\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">f)</span>
+                <div class="equation">\(3(x + 6) = 27\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">g)</span>
+                <div class="equation">\(7(x - 3) = 28\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">h)</span>
+                <div class="equation">\(2(x + 8) = 22\)</div>
+            </div>
+        </div>
+        
+        <!-- EJERCICIO 12: Con varios paréntesis -->
+        <div class="exercise-title">Exercici 12</div>
+        <div class="exercise-grid">
+            <div class="equation-item">
+                <span class="equation-label">a)</span>
+                <div class="equation">\(3(x + 2) + 2(x - 1) = 19\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">b)</span>
+                <div class="equation">\(4(x + 1) + 3(x - 2) = 16\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">c)</span>
+                <div class="equation">\(5(x - 3) + 2(x + 4) = 15\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">d)</span>
+                <div class="equation">\(2(x + 5) + 4(x - 1) = 28\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">e)</span>
+                <div class="equation">\(6(x - 2) + 3(x + 1) = 21\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">f)</span>
+                <div class="equation">\(3(x + 3) + 5(x - 2) = 23\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">g)</span>
+                <div class="equation">\(7(x - 1) + 2(x + 3) = 32\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">h)</span>
+                <div class="equation">\(4(x + 2) + 6(x - 3) = 6\)</div>
+            </div>
+        </div>
+        
+        <!-- EJERCICIO 13: Con paréntesis y negativos -->
+        <div class="exercise-title">Exercici 13</div>
+        <div class="exercise-grid">
+            <div class="equation-item">
+                <span class="equation-label">a)</span>
+                <div class="equation">\(-2(x - 3) = 8\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">b)</span>
+                <div class="equation">\(-3(x + 2) = 9\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">c)</span>
+                <div class="equation">\(-4(x - 5) = 12\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">d)</span>
+                <div class="equation">\(-5(x + 1) = 20\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">e)</span>
+                <div class="equation">\(3(x - 4) - 2(x + 1) = 6\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">f)</span>
+                <div class="equation">\(5(x + 2) - 3(x - 1) = 19\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">g)</span>
+                <div class="equation">\(4(x - 3) - 2(x + 5) = -8\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">h)</span>
+                <div class="equation">\(6(x + 1) - 4(x - 2) = 22\)</div>
+            </div>
+        </div>
+        
+        <!-- EJERCICIO 14: Con fracciones simples -->
+        <div class="exercise-title">Exercici 14</div>
+        <div class="exercise-grid">
+            <div class="equation-item">
+                <span class="equation-label">a)</span>
+                <div class="equation">\(\dfrac{x - 2}{3} = 4\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">b)</span>
+                <div class="equation">\(\dfrac{x + 5}{2} = 8\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">c)</span>
+                <div class="equation">\(\dfrac{2x - 3}{5} = 3\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">d)</span>
+                <div class="equation">\(\dfrac{3x + 1}{4} = 7\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">e)</span>
+                <div class="equation">\(\dfrac{x - 6}{2} = 5\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">f)</span>
+                <div class="equation">\(\dfrac{2x + 4}{3} = 6\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">g)</span>
+                <div class="equation">\(\dfrac{4x - 5}{5} = 3\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">h)</span>
+                <div class="equation">\(\dfrac{x + 8}{4} = 5\)</div>
+            </div>
+        </div>
+        
+        <!-- EJERCICIO 15: Con fracciones más complejas -->
+        <div class="exercise-title">Exercici 15</div>
+        <div class="exercise-grid">
+            <div class="equation-item">
+                <span class="equation-label">a)</span>
+                <div class="equation">\(\dfrac{x - 3}{2} + 5 = 9\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">b)</span>
+                <div class="equation">\(\dfrac{2x + 1}{3} + 4 = 11\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">c)</span>
+                <div class="equation">\(\dfrac{3x - 5}{4} + 2 = 8\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">d)</span>
+                <div class="equation">\(\dfrac{x + 4}{5} + 3 = 7\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">e)</span>
+                <div class="equation">\(\dfrac{x + 2}{3} = \dfrac{x - 4}{2}\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">f)</span>
+                <div class="equation">\(\dfrac{x - 1}{4} = \dfrac{x + 5}{3}\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">g)</span>
+                <div class="equation">\(\dfrac{2x + 3}{5} = \dfrac{x - 2}{2}\)</div>
+            </div>
+            <div class="equation-item">
+                <span class="equation-label">h)</span>
+                <div class="equation">\(\dfrac{x + 6}{2} = \dfrac{x - 3}{4}\)</div>
+            </div>
+        </div>
+        
+        <!-- SECCIÓN DE PROBLEMAS -->
+        <h2>🧩 Problemes per Resoldre amb Equacions</h2>
+        <div class="section-intro">
+            <strong>Instruccions:</strong> Llegeix atentament cada problema, planteja l'equació corresponent i resol-la. No oblidis comprovar que la solució tingui sentit en el context del problema.
+        </div>
+        
+        <div class="problem-box">
+            <span class="problem-number">1</span> 👨‍👧
+            <div class="problem-text">
+                La Maria té 12 anys. El seu pare té el triple de l'edat de la Maria més 6 anys. Quina edat té el pare de la Maria?
+            </div>
+        </div>
+        
+        <div class="problem-box">
+            <span class="problem-number">2</span> 💧
+            <div class="problem-text">
+                Un dipòsit conté 150 litres d'aigua. Si se'n treuen 35 litres i després se'n tornen a afegir 20 litres, quants litres d'aigua té ara el dipòsit?
+            </div>
+        </div>
+        
+        <div class="problem-box">
+            <span class="problem-number">3</span> 🧵
+            <div class="problem-text">
+                D'una corda de 50 metres es tallen dos trossos: un de 18 metres i un altre de 13 metres. Quants metres de corda queden?
+            </div>
+        </div>
+        
+        <div class="problem-box">
+            <span class="problem-number">4</span> 🔢
+            <div class="problem-text">
+                La suma de tres nombres consecutius és 51. Quins són aquests tres nombres?
+            </div>
+        </div>
+        
+        <div class="problem-box">
+            <span class="problem-number">5</span> 💰
+            <div class="problem-text">
+                El Joan i la Clara es reparteixen 84 euros. Si el Joan rep el doble que la Clara, quants euros rep cadascú?
+            </div>
+        </div>
+        
+        <div class="problem-box">
+            <span class="problem-number">6</span> 👵👦
+            <div class="problem-text">
+                L'àvia té 68 anys i el seu nét en té 14. Quants anys han de passar perquè l'àvia tingui el triple d'edat que el seu nét?
+            </div>
+        </div>
+        
+        <div class="problem-box">
+            <span class="problem-number">7</span> 🏊
+            <div class="problem-text">
+                Una piscina es buida a través d'un desguàs. Si actualment té 240 litres i cada hora se'n van 30 litres, després de quantes hores quedarà buida?
+            </div>
+        </div>
+        
+        <div class="problem-box">
+            <span class="problem-number">8</span> 📐
+            <div class="problem-text">
+                El perímetre d'un rectangle és 48 cm. Si la base mesura el doble que l'altura, quant mesura cada costat?
+            </div>
+        </div>
+        
+        <div class="problem-box">
+            <span class="problem-number">9</span> 🎂
+            <div class="problem-text">
+                El Marc té 8 anys. La seva germana gran té 5 anys més que ell, i el seu germà petit té la meitat de l'edat del Marc. Quina edat tenen els tres germans en total?
+            </div>
+        </div>
+        
+        <div class="problem-box">
+            <span class="problem-number">10</span> 📊
+            <div class="problem-text">
+                En un triangle, un angle mesura 30°. El segon angle té 30° més que el tercer angle. Quant mesura cada angle?
+            </div>
+        </div>
+        
+        <!-- SECCIÓN DE SOLUCIONES -->
+        <div class="solutions">
+            <h2>✅ Solucions</h2>
+            
+            <h3 style="color: #2e7d32; margin-top: 25px; margin-bottom: 15px;">Equacions:</h3>
+            
+            <div class="solution-group">
+                <h4>Exercici 1:</h4>
+                <div class="solution-grid">
+                    <div class="solution-item"><span class="solution-number">a)</span> x = 7</div>
+                    <div class="solution-item"><span class="solution-number">b)</span> x = 7</div>
+                    <div class="solution-item"><span class="solution-number">c)</span> x = 9</div>
+                    <div class="solution-item"><span class="solution-number">d)</span> x = 8</div>
+                    <div class="solution-item"><span class="solution-number">e)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">f)</span> x = 11</div>
+                    <div class="solution-item"><span class="solution-number">g)</span> x = 7</div>
+                    <div class="solution-item"><span class="solution-number">h)</span> x = 12</div>
+                </div>
+            </div>
+            
+            <div class="solution-group">
+                <h4>Exercici 2:</h4>
+                <div class="solution-grid">
+                    <div class="solution-item"><span class="solution-number">a)</span> x = 10</div>
+                    <div class="solution-item"><span class="solution-number">b)</span> x = 14</div>
+                    <div class="solution-item"><span class="solution-number">c)</span> x = 12</div>
+                    <div class="solution-item"><span class="solution-number">d)</span> x = 17</div>
+                    <div class="solution-item"><span class="solution-number">e)</span> x = 12</div>
+                    <div class="solution-item"><span class="solution-number">f)</span> x = 12</div>
+                    <div class="solution-item"><span class="solution-number">g)</span> x = 12</div>
+                    <div class="solution-item"><span class="solution-number">h)</span> x = 12</div>
+                </div>
+            </div>
+            
+            <div class="solution-group">
+                <h4>Exercici 3:</h4>
+                <div class="solution-grid">
+                    <div class="solution-item"><span class="solution-number">a)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">b)</span> x = -3</div>
+                    <div class="solution-item"><span class="solution-number">c)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">d)</span> x = -5</div>
+                    <div class="solution-item"><span class="solution-number">e)</span> x = -4</div>
+                    <div class="solution-item"><span class="solution-number">f)</span> x = -8</div>
+                    <div class="solution-item"><span class="solution-number">g)</span> x = -5</div>
+                    <div class="solution-item"><span class="solution-number">h)</span> x = -8</div>
+                </div>
+            </div>
+            
+            <div class="solution-group">
+                <h4>Exercici 4:</h4>
+                <div class="solution-grid">
+                    <div class="solution-item"><span class="solution-number">a)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">b)</span> x = 6</div>
+                    <div class="solution-item"><span class="solution-number">c)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">d)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">e)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">f)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">g)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">h)</span> x = 4</div>
+                </div>
+            </div>
+            
+            <div class="solution-group">
+                <h4>Exercici 5:</h4>
+                <div class="solution-grid">
+                    <div class="solution-item"><span class="solution-number">a)</span> x = -4</div>
+                    <div class="solution-item"><span class="solution-number">b)</span> x = -5</div>
+                    <div class="solution-item"><span class="solution-number">c)</span> x = -4</div>
+                    <div class="solution-item"><span class="solution-number">d)</span> x = -3</div>
+                    <div class="solution-item"><span class="solution-number">e)</span> x = -4</div>
+                    <div class="solution-item"><span class="solution-number">f)</span> x = -3</div>
+                    <div class="solution-item"><span class="solution-number">g)</span> x = -4</div>
+                    <div class="solution-item"><span class="solution-number">h)</span> x = -6</div>
+                </div>
+            </div>
+            
+            <div class="solution-group">
+                <h4>Exercici 6:</h4>
+                <div class="solution-grid">
+                    <div class="solution-item"><span class="solution-number">a)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">b)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">c)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">d)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">e)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">f)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">g)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">h)</span> x = 5</div>
+                </div>
+            </div>
+            
+            <div class="solution-group">
+                <h4>Exercici 7:</h4>
+                <div class="solution-grid">
+                    <div class="solution-item"><span class="solution-number">a)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">b)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">c)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">d)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">e)</span> x = 8</div>
+                    <div class="solution-item"><span class="solution-number">f)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">g)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">h)</span> x = 6</div>
+                </div>
+            </div>
+            
+            <div class="solution-group">
+                <h4>Exercici 8:</h4>
+                <div class="solution-grid">
+                    <div class="solution-item"><span class="solution-number">a)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">b)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">c)</span> x = 3</div>
+                    <div class="solution-item"><span class="solution-number">d)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">e)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">f)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">g)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">h)</span> x = 4</div>
+                </div>
+            </div>
+            
+            <div class="solution-group">
+                <h4>Exercici 9:</h4>
+                <div class="solution-grid">
+                    <div class="solution-item"><span class="solution-number">a)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">b)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">c)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">d)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">e)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">f)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">g)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">h)</span> x = 4</div>
+                </div>
+            </div>
+            
+            <div class="solution-group">
+                <h4>Exercici 10:</h4>
+                <div class="solution-grid">
+                    <div class="solution-item"><span class="solution-number">a)</span> x = -5</div>
+                    <div class="solution-item"><span class="solution-number">b)</span> x = -5</div>
+                    <div class="solution-item"><span class="solution-number">c)</span> x = -5</div>
+                    <div class="solution-item"><span class="solution-number">d)</span> x = -4</div>
+                    <div class="solution-item"><span class="solution-number">e)</span> x = -3</div>
+                    <div class="solution-item"><span class="solution-number">f)</span> x = -5</div>
+                    <div class="solution-item"><span class="solution-number">g)</span> x = -5</div>
+                    <div class="solution-item"><span class="solution-number">h)</span> x = -8</div>
+                </div>
+            </div>
+            
+            <div class="solution-group">
+                <h4>Exercici 11:</h4>
+                <div class="solution-grid">
+                    <div class="solution-item"><span class="solution-number">a)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">b)</span> x = 3</div>
+                    <div class="solution-item"><span class="solution-number">c)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">d)</span> x = 3</div>
+                    <div class="solution-item"><span class="solution-number">e)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">f)</span> x = 3</div>
+                    <div class="solution-item"><span class="solution-number">g)</span> x = 7</div>
+                    <div class="solution-item"><span class="solution-number">h)</span> x = 3</div>
+                </div>
+            </div>
+            
+            <div class="solution-group">
+                <h4>Exercici 12:</h4>
+                <div class="solution-grid">
+                    <div class="solution-item"><span class="solution-number">a)</span> x = 3</div>
+                    <div class="solution-item"><span class="solution-number">b)</span> x = 2</div>
+                    <div class="solution-item"><span class="solution-number">c)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">d)</span> x = 3</div>
+                    <div class="solution-item"><span class="solution-number">e)</span> x = 3</div>
+                    <div class="solution-item"><span class="solution-number">f)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">g)</span> x = 3</div>
+                    <div class="solution-item"><span class="solution-number">h)</span> x = 2</div>
+                </div>
+            </div>
+            
+            <div class="solution-group">
+                <h4>Exercici 13:</h4>
+                <div class="solution-grid">
+                    <div class="solution-item"><span class="solution-number">a)</span> x = -1</div>
+                    <div class="solution-item"><span class="solution-number">b)</span> x = -5</div>
+                    <div class="solution-item"><span class="solution-number">c)</span> x = 2</div>
+                    <div class="solution-item"><span class="solution-number">d)</span> x = -5</div>
+                    <div class="solution-item"><span class="solution-number">e)</span> x = 16</div>
+                    <div class="solution-item"><span class="solution-number">f)</span> x = 4</div>
+                    <div class="solution-item"><span class="solution-number">g)</span> x = 3</div>
+                    <div class="solution-item"><span class="solution-number">h)</span> x = 5</div>
+                </div>
+            </div>
+            
+            <div class="solution-group">
+                <h4>Exercici 14:</h4>
+                <div class="solution-grid">
+                    <div class="solution-item"><span class="solution-number">a)</span> x = 14</div>
+                    <div class="solution-item"><span class="solution-number">b)</span> x = 11</div>
+                    <div class="solution-item"><span class="solution-number">c)</span> x = 9</div>
+                    <div class="solution-item"><span class="solution-number">d)</span> x = 9</div>
+                    <div class="solution-item"><span class="solution-number">e)</span> x = 16</div>
+                    <div class="solution-item"><span class="solution-number">f)</span> x = 7</div>
+                    <div class="solution-item"><span class="solution-number">g)</span> x = 5</div>
+                    <div class="solution-item"><span class="solution-number">h)</span> x = 12</div>
+                </div>
+            </div>
+            
+            <div class="solution-group">
+                <h4>Exercici 15:</h4>
+                <div class="solution-grid">
+                    <div class="solution-item"><span class="solution-number">a)</span> x = 11</div>
+                    <div class="solution-item"><span class="solution-number">b)</span> x = 10</div>
+                    <div class="solution-item"><span class="solution-number">c)</span> x = 9</div>
+                    <div class="solution-item"><span class="solution-number">d)</span> x = 16</div>
+                    <div class="solution-item"><span class="solution-number">e)</span> x = 16</div>
+                    <div class="solution-item"><span class="solution-number">f)</span> x = -23</div>
+                    <div class="solution-item"><span class="solution-number">g)</span> x = -19</div>
+                    <div class="solution-item"><span class="solution-number">h)</span> x = 18</div>
+                </div>
+            </div>
+            
+            <h3 style="color: #2e7d32; margin-top: 30px; margin-bottom: 15px;">Problemes:</h3>
+            
+            <div class="solution-item" style="margin: 10px 0;">
+                <span class="solution-number">1</span> El pare té 42 anys (equació: x = 3·12 + 6)
+            </div>
+            <div class="solution-item" style="margin: 10px 0;">
+                <span class="solution-number">2</span> Ara té 135 litres (equació: x = 150 - 35 + 20)
+            </div>
+            <div class="solution-item" style="margin: 10px 0;">
+                <span class="solution-number">3</span> Queden 19 metres (equació: x = 50 - 18 - 13)
+            </div>
+            <div class="solution-item" style="margin: 10px 0;">
+                <span class="solution-number">4</span> Els nombres són 16, 17 i 18 (equació: x + (x+1) + (x+2) = 51 → x = 16)
+            </div>
+            <div class="solution-item" style="margin: 10px 0;">
+                <span class="solution-number">5</span> La Clara rep 28€ i el Joan 56€ (equació: x + 2x = 84 → x = 28)
+            </div>
+            <div class="solution-item" style="margin: 10px 0;">
+                <span class="solution-number">6</span> Han de passar 13 anys (equació: 68 + x = 3(14 + x) → x = 13)
+            </div>
+            <div class="solution-item" style="margin: 10px 0;">
+                <span class="solution-number">7</span> Després de 8 hores (equació: 240 - 30x = 0 → x = 8)
+            </div>
+            <div class="solution-item" style="margin: 10px 0;">
+                <span class="solution-number">8</span> L'altura mesura 8 cm i la base 16 cm (equació: 2(x + 2x) = 48 → x = 8)
+            </div>
+            <div class="solution-item" style="margin: 10px 0;">
+                <span class="solution-number">9</span> En total tenen 25 anys (Marc: 8, germana: 13, germà: 4)
+            </div>
+            <div class="solution-item" style="margin: 10px 0;">
+                <span class="solution-number">10</span> Els angles mesuren 30°, 90° i 60° (equació: 30 + (x+30) + x = 180 → x = 60)
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+            <p style="color: #666; font-size: 0.9em;">
+                📚 Material creat per a Matemàtiques 2n ESO
+            </p>
+        </div>
+    </div>
+</body>
+</html>
